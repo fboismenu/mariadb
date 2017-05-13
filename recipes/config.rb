@@ -58,16 +58,14 @@ innodb_options['innodb_log_file_size'] = if node['mariadb']['innodb']['log_file_
                                          else
                                            node['mariadb']['innodb']['log_file_size']
                                          end
-if node['mariadb']['innodb']['bps_percentage_memory']
-  innodb_options['innodb_buffer_pool_size'] =
-    (
-      node['mariadb']['innodb']['buffer_pool_size'].to_f *
-      (node['memory']['total'][0..-3].to_i / 1024)
-    ).round.to_s + 'M'
-else
-  innodb_options['innodb_buffer_pool_size'] = \
-    node['mariadb']['innodb']['buffer_pool_size']
-end
+innodb_options['innodb_buffer_pool_size'] = if node['mariadb']['innodb']['bps_percentage_memory']
+                                              (
+                                                  node['mariadb']['innodb']['buffer_pool_size'].to_f *
+                                                  (node['memory']['total'][0..-3].to_i / 1024)
+                                              ).round.to_s + 'M'
+                                            else
+                                              node['mariadb']['innodb']['buffer_pool_size']
+                                            end
 innodb_options['innodb_log_buffer_size'] = \
   node['mariadb']['innodb']['log_buffer_size']
 innodb_options['innodb_file_per_table'] = \

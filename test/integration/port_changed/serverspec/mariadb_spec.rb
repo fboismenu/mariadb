@@ -30,7 +30,7 @@ describe "verify the tuning attributes set in #{mysql_config_file}" do
     key_buffer_size: '128M',
     max_allowed_packet: '16M',
     sort_buffer_size: '4M',
-    myisam_sort_buffer_size: '512M'
+    myisam_sort_buffer_size: '512M',
   }.each do |attribute, value|
     describe command("grep -E \"^#{attribute}\\s+\" #{mysql_config_file}") do
       its(:stdout) { should match(/#{value}/) }
@@ -43,7 +43,7 @@ describe 'verify the tuning attributes set in ' + includedir + '/innodb.cnf' do
     innodb_buffer_pool_size: '256M',
     innodb_flush_method: 'O_DIRECT',
     innodb_file_per_table: 1,
-    innodb_open_files: 400
+    innodb_open_files: 400,
   }.each do |attribute, value|
     describe command("grep -E \"^#{attribute}\\s+\" " \
                      "#{includedir}/innodb.cnf") do
@@ -55,7 +55,7 @@ end
 describe 'verify the tuning attributes set in ' + includedir + '/replication.cnf' do
   {
     max_binlog_size: '100M',
-    expire_logs_days: 10
+    expire_logs_days: 10,
   }.each do |attribute, value|
     describe command("grep -E \"^#{attribute}\\s+\" " \
                      "#{includedir}/replication.cnf") do

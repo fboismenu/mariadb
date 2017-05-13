@@ -111,9 +111,7 @@ default['mariadb']['galera']['innodb_flush_log_at_trx_commit'] = '2'
 default['mariadb']['galera']['wsrep_node_address_interface'] = ''
 default['mariadb']['galera']['wsrep_node_port'] = ''
 default['mariadb']['galera']['wsrep_node_incoming_address_interface'] = ''
-default['mariadb']['galera']['wsrep_provider_options'] = {
-  'gcache.size' => '512M'
-}
+default['mariadb']['galera']['wsrep_provider_options']['gcache.size'] = '512M'
 default['mariadb']['galera']['options'] = {}
 
 # Node format: [{ :name => "mariadb_1", fqdn: "33.33.33.11"}]

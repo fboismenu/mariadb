@@ -1,6 +1,3 @@
 AllCops:
   Exclude:
     - '**/Vagrantfile'
-
-# Cookstyle todo
-inherit_from: .rubocop_todo.yml
